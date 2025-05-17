@@ -5,7 +5,6 @@
 // @author       balu100
 // @match        https://f95zone.to/sam/latest_alpha/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
-// @license      GNU
 // @grant        none
 // @run-at       document-end
 // @downloadURL  https://github.com/balu100/Ultimate-F95/raw/main/Ultimate-F95.user.js
