@@ -34,13 +34,6 @@ The default F95zone "Latest Updates" page can feel a bit cramped, especially on 
 *   Better utilization of screen width.
 *   The convenience of infinite scrolling.
 
-## Screenshots
-
-*(It's highly recommended to add a couple of screenshots here showing the redesigned page in action. For example, one showing the wider grid and another showing infinite scroll having loaded more items.)*
-
-**Example Placeholder:**
-`![Screenshot of F95 Redesign in action](link_to_your_screenshot.png)`
-
 ## Requirements
 
 *   A modern web browser (e.g., Chrome, Firefox, Edge).
