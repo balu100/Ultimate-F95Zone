@@ -9,7 +9,6 @@
 // @grant        none
 // @run-at       document-end
 // @downloadURL  https://github.com/balu100/Ultimate-F95/raw/main/Ultimate-F95.user.js
-// @updateURL    https://github.com/balu100/Ultimate-F95/raw/main/Ultimate-F95.meta.js
 // ==/UserScript==
 
 (function () {
