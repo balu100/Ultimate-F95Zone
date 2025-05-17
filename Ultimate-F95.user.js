@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ultimate F95
 // @namespace    https://github.com/balu100/Ultimate-F95
-// @version      1.4.0
+// @version      1.4.1
 // @description  Ultimate F95
 // @author       balu100
 // @match        https://f95zone.to/*
