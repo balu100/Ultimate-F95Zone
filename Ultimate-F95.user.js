@@ -1,14 +1,15 @@
-// ==UserScript==
 // @name         Ultimate F95
 // @namespace    https://github.com/balu100/Ultimate-F95
-// @version      1.3.3
+// @version      1.3.3 
 // @description  Ultimate F95
 // @author       balu100
-// @match        https://f95zone.to/*
+// @match        https://f95zone.to/sam/latest_alpha/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
 // @license      GNU
 // @grant        none
 // @run-at       document-end
+// @downloadURL  https://github.com/balu100/Ultimate-F95/raw/main/Ultimate-F95.user.js
+// @updateURL    https://github.com/balu100/Ultimate-F95/raw/main/Ultimate-F95.meta.js
 // ==/UserScript==
 
 (function () {
