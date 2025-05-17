@@ -4,7 +4,7 @@
 // @version      1.4.0
 // @description  Ultimate F95
 // @author       balu100
-// @match        https://f95zone.to/sam/latest_alpha/*
+// @match        https://f95zone.to/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
 // @grant        none
 // @run-at       document-end
