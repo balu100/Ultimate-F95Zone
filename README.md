@@ -45,7 +45,7 @@ The default F95zone "Latest Updates" page can feel a bit cramped, especially on 
 ## Installation
 
 1.  Ensure you have a UserScript manager installed in your browser.
-2.  Click on the "Raw" button for the `F95-Redesign.user.js` file in this repository (or use the direct install link if provided, e.g., from GreasyFork).
+2.  Click on the "Raw" button for the `Ultimate-F95.user.js` file in this repository (or use the direct install link if provided, e.g., from GreasyFork).
 3.  Your UserScript manager should automatically open a new tab asking if you want to install the script.
 4.  Review the script's permissions (it should only need access to `f95zone.to`) and click "Install".
 5.  The script will automatically run when you visit URLs matching `https://f95zone.to/sam/latest_alpha/*`.
