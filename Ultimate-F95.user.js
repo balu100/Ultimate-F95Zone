@@ -1,8 +1,9 @@
 // ==UserScript==
-// @name         Ultimate F95
+// @name         Ultimate F95Zone
 // @namespace    https://github.com/balu100/Ultimate-F95
-// @version      1.4.1
-// @description  Ultimate F95
+// @version      1.5
+// @license      MIT
+// @description  Fully responsive - endless scrolling - wide
 // @author       balu100
 // @match        https://f95zone.to/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
