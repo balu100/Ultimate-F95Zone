@@ -5,7 +5,7 @@
 // @license      MIT
 // @description  Ultimate F95 - Removed const reassignment error, prefix display.
 // @author       balu100
-// @match        https://f95zone.to*
+// @match        https://f95zone.to/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
 // @grant        none
 // @run-at       document-end
