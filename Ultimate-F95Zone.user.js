@@ -193,7 +193,7 @@
         const newPg = getCurrentPageFromUrl(); const newFi = getCurrentFiltersFromUrl();
         console.log(`StateChange Check: OldF('${currentFilters}') vs NewF('${newFi}')`);
         console.log(`StateChange Check: OldP(${currentPage}) vs NewHashP(${newPg})`);
-        if (currentFilters !== newFi || (newPg === 1 && currentPage !== newPg )) {
+        if (currentFilters !== newFi) {
             console.log(`State change ACTION. Resetting.`);
             currentPage = 1; currentFilters = newFi; noMorePages = false; isLoading = false;
             const lT = document.getElementById('infinite-scroll-trigger'); if (lT) lT.className = '';
