@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ultimate F95Zone
 // @namespace    https://github.com/balu100/Ultimate-F95Zone
-// @version      1.7
+// @version      1.8
 // @license      MIT
 // @description  Ultimate F95 - Removed const reassignment error, prefix display.
 // @author       balu100
