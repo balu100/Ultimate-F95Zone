@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Ultimate F95Zone
 // @namespace    https://github.com/balu100/Ultimate-F95Zone
-// @version      1.8
+// @version      1.8.1
 // @license      MIT
-// @description  Ultimate F95 - Removed const reassignment error, prefix display.
+// @description  Ultimate F95 - Infinite scrolling, wider layout, and duplicate prevention.
 // @author       balu100
 // @match        https://f95zone.to/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
@@ -96,6 +96,31 @@
         return false;
     }
 
+    const normalizeThreadId = (value) => {
+        const id = String(value ?? '').trim();
+        return /^\d+$/.test(id) && id !== '0' ? id : '';
+    };
+
+    const getThreadIdFromTile = (tile) => {
+        const dataId = normalizeThreadId(tile.dataset.threadId);
+        if (dataId) return dataId;
+
+        // Site-generated tiles do not always expose data-thread-id, so fall back
+        // to links such as /threads/123/ and /threads/game-title.123/.
+        const link = tile.querySelector('a.resource-tile_link[href*="/threads/"]');
+        const match = link?.href.match(/\/threads\/(?:[^/?#]*\.)?(\d+)(?:\/|[?#]|$)/i);
+        return match ? match[1] : '';
+    };
+
+    const getRenderedThreadIds = (container) => {
+        const ids = new Set();
+        container.querySelectorAll(itemSelector).forEach(tile => {
+            const id = getThreadIdFromTile(tile);
+            if (id) ids.add(id);
+        });
+        return ids;
+    };
+
     function createItemElement(itemData_g) {
         const tile = document.createElement('div');
         let tileCls = ['resource-tile', 'userscript-generated-tile'];
@@ -174,14 +199,36 @@
             const d=await r.json();
             if(d&&d.status==='ok'&&d.msg&&d.msg.data){
                 const i=d.msg.data,c=document.querySelector(itemContainerSelector);
-                if(i.length&&c){
+                if(Array.isArray(i)&&i.length&&c){
                     const f=document.createDocumentFragment(),aE=[];
-                    i.forEach(iD=>{const el=createItemElement(iD);if(el){f.appendChild(el);aE.push(el);}});
-                    c.appendChild(f);
-                    if(typeof XF!=='undefined'&&XF.activate)aE.forEach(el=>XF.activate(el));
+                    const renderedThreadIds=getRenderedThreadIds(c);
+                    const responseThreadIds=new Set();
+                    i.forEach(iD=>{
+                        const threadId=normalizeThreadId(iD.thread_id);
+                        if(threadId&&(renderedThreadIds.has(threadId)||responseThreadIds.has(threadId)))return;
+                        const el=createItemElement(iD);
+                        if(el){
+                            f.appendChild(el);aE.push(el);
+                            if(threadId){renderedThreadIds.add(threadId);responseThreadIds.add(threadId);}
+                        }
+                    });
+                    if(aE.length){
+                        c.appendChild(f);
+                        if(typeof XF!=='undefined'&&XF.activate)aE.forEach(el=>XF.activate(el));
+                        highlightUnreadLinks();
+                    }
                     currentPage=nP;
-                    highlightUnreadLinks();
-                    if(d.msg.pagination&&d.msg.pagination.page>=d.msg.pagination.total)noMorePages=true;
+
+                    const pagination=d.msg.pagination||{};
+                    const returnedPage=Number(pagination.page);
+                    const totalPages=Number(pagination.total);
+                    const requestWasClamped=Number.isFinite(returnedPage)&&returnedPage<nP;
+                    const reachedLastPage=Number.isFinite(returnedPage)&&Number.isFinite(totalPages)&&returnedPage>=totalPages;
+
+                    // The endpoint can return the last valid page for an out-of-range
+                    // request. If every returned thread is already rendered, stop here
+                    // instead of appending that page again or requesting forever.
+                    if(!aE.length||requestWasClamped||reachedLastPage)noMorePages=true;
                 }else{noMorePages=true;}
             }else{noMorePages=true;console.error("loadMoreItems: AJAX response error",d);}
         }catch(e){console.error('loadMoreItems: Error during AJAX/processing:',e);noMorePages=true;}
